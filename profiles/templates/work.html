@@ -1,0 +1,23 @@
+{% extends "_layouts/base.html"  %}
+{% load static from staticfiles %}
+
+
+{% block title %}{{ "my projects and experience" | title }} - {{ block.super }}{% endblock title %}
+
+{% block content%}
+<div class="calendar">
+	Loading the data just for you.
+	If you are in a mobile or a tablet, please come back when you have bought a PC.
+</div>
+{% endblock %}
+
+{% block footer%}
+<script src="{% static 'script/github-calendar.min.js' %}"></script>
+<script>
+var is_mobile = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+
+if(!is_mobile) {
+	GitHubCalendar(".calendar", "orggue");
+}
+</script>
+{% endblock %}

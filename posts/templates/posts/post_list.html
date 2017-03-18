@@ -1,0 +1,32 @@
+{% extends "_layouts/base.html"  %}
+{% load emoji_tags %}
+
+
+{% block title %}{{ "Articles" | title }} - {{ block.super }}{% endblock title %}
+
+{% block content%}
+{% for object in object_list %}
+<div class="row mini">
+	<div class="col-md-9">
+		<h2>
+			<a href="{{ object.get_absolute_url }}">
+				{{ object.title|emoji_replace|safe }}
+			</a>
+		</h2>
+	</div>
+	<div class="col-md-3">
+		<a href="{{ object.get_absolute_url }}">
+			{% if object.thumbnail %}
+			<img src="{{ object.thumbnail.url }}" class="image">
+			{% endif %}
+		</a>
+	</div>
+</div>
+<hr>
+{% empty %}
+<div class="center flex-auto flex-center">
+	<h2>{{ "There is no articles yet" | upper }}</h2>
+</div>
+{% endfor %}
+{% include "pagination.html" %}
+{% endblock %}

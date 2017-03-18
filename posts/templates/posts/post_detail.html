@@ -1,0 +1,36 @@
+{% extends "_layouts/base.html"  %}
+{% load emoji_tags %}
+
+{% block title %}{{ object.title | title }} - {{ block.super }}{% endblock title %}
+
+{% block image%}
+{% if object.thumbnail %}
+<meta name="twitter:image:src" content="{{ object.thumbnail.url }}"></meta>
+{% endif %}
+{% endblock %}
+
+
+{% block content%}
+<div class="col-md-8 posts">
+	<div class="post">
+		<h1>
+			{{ object.title|emoji_replace|safe }}
+		</h1>
+		<p>
+		<a href="{{ object.get_absolute_url }}">
+			{% if object.thumbnail %}
+			<div class="image" style="background-image: url({{ object.thumbnail.url }});"></div>
+			{% endif %}
+		</a>
+		</p>
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<p>
+				{{ object.content|emoji_replace|safe }}
+				</p>
+				<hr>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

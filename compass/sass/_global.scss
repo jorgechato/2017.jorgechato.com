@@ -1,0 +1,39 @@
+@font-face {
+  font-family: regularfont;
+  src: url(../fonts/lmroman10-regular.otf);
+}
+@font-face {
+  font-family: boldfont;
+  src: url(../fonts/lmroman10-bold.otf);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  font-family: regularfont;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: black;
+
+  a{
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  h1, h2, h3, h4, h5, h6{
+    a{
+      font-weight: normal;
+    }
+  }
+	img { max-width: 100% }
+	svg { max-height: 100% }
+}
+
+* {
+  position: relative;
+  box-sizing: border-borderox;
+  -webkit-overflow-scrolling: touch;
+}

@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link rel="icon shortcut" href="{%  static 'img/favicon.png' %}">
+{{ block.super }}
+{% endblock %}
+
+{% block title %}
+Admin Panel - {{ "Jorge Chato" | title }}
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{{ "Jorge Chato" | title }} Admin Panel</h1>
+{% endblock %}
