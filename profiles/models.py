@@ -35,10 +35,10 @@ class Technical(models.Model):
     skills = models.TextField()
 
     def __str__(self):
-        return self.sategory
+        return self.category
 
     def __unicode__(self):
-        return unicode(self.sategory)
+        return unicode(self.category)
 
 
 class Experience(models.Model):

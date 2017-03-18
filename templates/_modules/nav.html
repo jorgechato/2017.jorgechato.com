@@ -1,18 +1,34 @@
-<nav class="center">
-	<ul class="list-reset mt0 h3">
-		<li class="inline-block mr3"><a href="{% url 'profile:main' %}"><span class="hint--top" aria-label="Go to my work and projects"><i class="fa fa-home" aria-hidden="true"></i>
-				</span></a></li>
-				<li class="inline-block mr3"><a href=""><span class="hint--top" aria-label="Something about me"><i class="fa fa-smile-o" aria-hidden="true"></i>
-						</span></a></li>
-		<li class="inline-block mr3"><a href="{% url 'articles:list' %}"><span class="hint--top" aria-label="Read some of my articles"><i class="fa fa-book" aria-hidden="true"></i>
-				</span></a></li>
-				<li class="inline-block mr3"><a href="//github.com/orggue/"><span class="hint--top" aria-label="Check out my Github"><i class="fa fa-github" aria-hidden="true"></i></span></a></li>
-				<li class="inline-block mr0"><a href="//www.linkedin.com/in/orggue/"><span class="hint--top" aria-label="Check out my Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i>
-						</span></a></li>
+<nav>
+	<ul class="nav nav-pills">
+		<li role="presentation" class="hint--top" aria-label="Go to my work and projects">
+			<a href="{% url 'profile:main' %}">
+				<i class="fa fa-home" aria-hidden="true"></i>
+			</a>
+		</li>
+		<li role="presentation" class="hint--top" aria-label="Something about me">
+			<a href="">
+				<i class="fa fa-smile-o" aria-hidden="true"></i>
+			</a>
+		</li>
+		<li role="presentation" class="hint--top" aria-label="Read some of my articles">
+			<a href="{% url 'articles:list' %}">
+				<i class="fa fa-book" aria-hidden="true"></i>
+			</a>
+		</li>
+		<li role="presentation">
+			<a href="//github.com/orggue/" class="hint--top" aria-label="Check out my Github">
+				<i class="fa fa-github" aria-hidden="true"></i>
+			</a>
+		</li>
+		<li role="presentation" class="hint--top" aria-label="Check out my Linkedin">
+			<a href="//www.linkedin.com/in/orggue/">
+				<i class="fa fa-linkedin" aria-hidden="true"></i>
+			</a>
+		</li>
 	</ul>
 
-	<div class="center flex-auto">
-		<div class="ruler sm-flex flex-center col-8 mx-auto"></div>
-		<div class="ruler sm-flex flex-center col-7 mx-auto"></div>
+	<div class="joker">
+		<div class="ruler col-xs-8 col-xs-offset-2"></div>
+		<div class="ruler col-xs-6 col-xs-offset-3"></div>
 	</div>
 </nav>

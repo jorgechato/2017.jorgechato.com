@@ -26,12 +26,12 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'style/base.css' %}">
 		{% endblock %}
 	</head>
-	<body class="container">
+	<body>
 		{% include "_modules/head.html" %}
 		{% include "_modules/nav.html" %}
 
-		<div class="center flex-auto">
-			<div class="sm-flex flex-center col-10 mx-auto">
+		<div class="container-overflow-wrap">
+			<div class="container">
 				{% block content%}
 				{% endblock %}
 			</div>

@@ -5,16 +5,52 @@
 {% block title %}{{ "my projects and experience" | title }} - {{ block.super }}{% endblock title %}
 
 {% block content%}
-<div class="calendar">
+<!--<div class="work row">-->
+<!--<div class="col-md-8 col-md-offset-2">-->
+<!--{{ profile.bio|safe }}-->
+<!--</div>-->
+<!--</div>-->
+
+<div class="work row">
+	<div class="col-md-8 col-md-offset-2">
+		{% for skill in skills %}
+		<strong>{{ skill.category }}: </strong>{{ skill.skills }}
+		</br>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="row work">
+	<h2>Projects</h2>
+	{% for repo in repos %}
+	<div class="col-md-3">
+		<div class="panel panel-default panel-profile">
+			<div class="panel-heading" style="background-image: url({{ repo.thumbnail.url }});"></div>
+
+			<div class="panel-body text-center">
+				<h4 class="">{{ repo.repo_name }}</h4>
+				<p>
+				{{ repo.description|truncatechars:50 }}
+				</p>
+				<a href="{{ repo.get_absolute_url }}" class="btn btn-default btn-sm m-b">
+					<span class="icon icon-add-user"></span> View More
+				</a>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+<div class="calendar hidden-xs work">
 	Loading the data just for you.
-	If you are in a mobile or a tablet, please come back when you have bought a PC.
 </div>
 {% endblock %}
+
 
 {% block footer%}
 <script src="{% static 'script/github-calendar.min.js' %}"></script>
 <script>
-var is_mobile = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+var is_mobile = (/android|webos|iphone|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
 
 if(!is_mobile) {
 	GitHubCalendar(".calendar", "orggue");
