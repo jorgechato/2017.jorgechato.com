@@ -4,7 +4,16 @@
 {% block title %}{{ object.get_full_name }} - {{ block.super }}{% endblock title %}
 
 {% block content%}
-<article class="markdown-body">
-	{{ readme|safe }}
-</article>
+<div class="row mt">
+	<article class="markdown-body col-md-10 col-md-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong><i class="fa fa-stack-overflow" aria-hidden="true"></i> README.md</strong>
+			</div>
+			<div class="panel-body">
+				{{ readme|safe }}
+			</div>
+		</div>
+	</article>
+</div>
 {% endblock %}
