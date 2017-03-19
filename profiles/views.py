@@ -46,5 +46,6 @@ class MainView(TemplateView):
         context = super(MainView, self).get_context_data(*args, **kwargs)
         context['repos'] = Projects.objects.all()
         context['skills'] = Technical.objects.all()
+        context['experiences'] = Experience.objects.all()
 
         return context

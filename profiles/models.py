@@ -45,8 +45,9 @@ class Experience(models.Model):
     thumbnail = models.ImageField(upload_to="expierience/")
     company_name = models.CharField(max_length=240)
     position = models.CharField(max_length=240, blank=True)
+    url = models.URLField(blank=True)
     location = models.CharField(max_length=240, blank=True)
-    start_at = models.DateTimeField()
+    start_at = models.DateTimeField(blank=True)
     end_at = models.DateTimeField(blank=True)
     description = RichTextField()
 
