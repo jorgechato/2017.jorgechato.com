@@ -32,6 +32,7 @@ INSTALLED_APPS = [
         'ckeditor',
         'posts',
         'profiles',
+        'me',
         ]
 
 if DEBUG:
@@ -168,4 +169,29 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 try:
     from chato.local_settings import *
 except ImportError:
-    pass
+    from github import Github
+    from instagram.client import InstagramAPI
+    from os import environ
+
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = environ.get('SECRET_KEY')
+
+    github_api = Github(environ.get('git_user'), environ.get('git_pass'))
+
+    access_token = environ.get('access_token')
+    client_secret = environ.get('client_secret')
+    instagram_api = InstagramAPI(access_token=access_token, client_secret=client_secret)
+
+    email = environ.get('email')
+
+    # Database
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': environ.get('NAME'),
+                'USER': environ.get('USER'),
+                'PASSWORD': environ.get('PASSWORD'),
+                'HOST': environ.get('HOST'),
+                'PORT': environ.get('PORT'),
+                }
+            }

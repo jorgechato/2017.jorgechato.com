@@ -5,14 +5,23 @@
 
 {% block content%}
 <div class="row mt">
-	<article class="markdown-body col-md-10 col-md-offset-1">
+	<article class="col-md-10 col-md-offset-1">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<strong><i class="fa fa-stack-overflow" aria-hidden="true"></i> README.md</strong>
+			<div class="text-left panel-heading">
+				<div class="row">
+					<div class="col-sm-9">
+						<strong><i class="fa fa-stack-overflow" aria-hidden="true"></i> README.md</strong>
+					</div>
+					<div class="col-sm-3 text-right">
+						<a href="{{ object.url }}" class="hint--left btn btn-default" aria-label="Read it on Github">
+							<i class="fa fa-code-fork" aria-hidden="true"></i>
+						</a>
+					</div>
+				</div>
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+					<div class="markdown-body col-md-10 col-md-offset-1">
 						{{ readme|safe }}
 					</div>
 				</div>

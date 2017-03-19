@@ -1,0 +1,15 @@
+{% extends "_layouts/base.html"  %}
+{% load static from staticfiles %}
+
+
+{% block title %}{{ "Something about me" | title }} - {{ block.super }}{% endblock title %}
+
+{% block content%}
+<div class="work row">
+	<div class="col-md-8 col-md-offset-2">
+		{% for object in pictures %}
+		{{ object.caption.text }}
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

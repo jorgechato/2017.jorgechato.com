@@ -1,6 +1,6 @@
 import base64
 from django.views.generic import TemplateView, DetailView
-from chato.local_settings import github_api
+from chato.settings import github_api
 import markdown2
 from chato.settings import MEDIA_ROOT
 
@@ -40,7 +40,7 @@ class RepoDetailView(DetailView):
 
 
 class MainView(TemplateView):
-    template_name = "work.html"
+    template_name = "main.html"
 
     def get_context_data(self, *args, **kwargs):
         context = super(MainView, self).get_context_data(*args, **kwargs)

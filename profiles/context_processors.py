@@ -1,5 +1,5 @@
 from profiles.models import Profile
-from chato.local_settings import email
+from chato.settings import email
 
 
 def header(request):
