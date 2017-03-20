@@ -186,4 +186,5 @@ except ImportError:
     email = environ.get('email')
 
     # Database
+    DATABASES = {}
     DATABASES['default'] = dj_database_url.config()
