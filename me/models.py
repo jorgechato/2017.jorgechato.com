@@ -7,8 +7,8 @@ class Event(models.Model):
     title = models.CharField(max_length=240)
     url = models.URLField(blank=True)
     location = models.CharField(max_length=240, blank=True)
-    start_at = models.DateTimeField(blank=True)
-    end_at = models.DateTimeField(blank=True)
+    start_at = models.DateTimeField(blank=True, null=True)
+    end_at = models.DateTimeField(blank=True, null=True)
     description = RichTextField()
 
     def __str__(self):

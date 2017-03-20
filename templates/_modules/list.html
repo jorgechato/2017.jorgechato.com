@@ -1,0 +1,27 @@
+<div class="row work">
+	<h2>{{ title }}</h2>
+	{% for object in objects %}
+	<div class="col-md-3">
+		<div class="panel panel-default panel-profile">
+			<div class="panel-heading" style="background-image: url({{ object.thumbnail.url }});"></div>
+
+			<div class="panel-body text-center">
+				<h4 class="">{{ object.repo_name }}{{ object.title }}</h4>
+				{% if title == "Events" %}
+				{{ object.description|safe }}
+				{% if object.url %}
+				<a href="{{ object.url }}" class="btn btn-default btn m-b">
+					<span class="icon icon-add-user"></span> View More
+				</a>
+				{% endif %}
+				{% else %}
+				<p>{{ object.description|truncatechars:50 }}</p>
+				<a href="{{ object.get_absolute_url }}" class="btn btn-default btn m-b">
+					<span class="icon icon-add-user"></span> View More
+				</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>

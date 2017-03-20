@@ -5,14 +5,21 @@
 {% block title %}{{ "Something about me" | title }} - {{ block.super }}{% endblock title %}
 
 {% block content%}
+{% if profile %}
 <div class="work row">
 	<div class="col-md-8 col-md-offset-2">
-		{% for object in pictures %}
-		{% if object.videos %}
-		Es un video
-		{% endif %}
-		<img src="{{ object.images.standard_resolution.url }}" alt="">
-		{% endfor %}
+		{{ profile.bio|safe }}
 	</div>
+</div>
+{% endif %}
+
+{% include "_modules/list.html" with objects=events title="Events" %}
+
+<div class="instagram">
+	<h2>A look into my life</h2>
+	{% for object in pictures %}
+	{{ object.url }}
+	<img src="{{ object.images.standard_resolution.url }}" alt="">
+	{% endfor %}
 </div>
 {% endblock %}

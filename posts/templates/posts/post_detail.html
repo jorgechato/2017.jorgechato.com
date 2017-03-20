@@ -11,7 +11,7 @@
 
 
 {% block content%}
-<div class="col-md-8 posts">
+<div class="col-md-8 col-md-offset-2 posts text-left">
 	<div class="post">
 		<h1>
 			{{ object.title|emoji_replace|safe }}
@@ -26,7 +26,7 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<p>
-				{{ object.content|emoji_replace|safe }}
+				{{ object.content|safe }}
 				</p>
 				<hr>
 			</div>
