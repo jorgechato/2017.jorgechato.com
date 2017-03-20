@@ -8,7 +8,10 @@
 <div class="work row">
 	<div class="col-md-8 col-md-offset-2">
 		{% for object in pictures %}
-		{{ object.caption.text }}
+		{% if object.videos %}
+		Es un video
+		{% endif %}
+		<img src="{{ object.images.standard_resolution.url }}" alt="">
 		{% endfor %}
 	</div>
 </div>

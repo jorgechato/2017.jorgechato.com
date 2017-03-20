@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from chato.settings import instagram_api
 
-# from me.models import Event
+from me.models import Event
 
 
 class MainView(TemplateView):
@@ -9,8 +9,8 @@ class MainView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(MainView, self).get_context_data(*args, **kwargs)
-        recent_media, _next = instagram_api.user_recent_media()
+        recent_media, _next = instagram_api.user_recent_media(count=21)
         context['pictures'] = recent_media
-        # context['events'] = Event.objects.all()
+        context['events'] = Event.objects.all()
 
         return context

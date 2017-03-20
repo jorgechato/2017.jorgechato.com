@@ -1,5 +1,9 @@
 {% load staticfiles %}
+
+{% if profile %}
+{% if profile.cv %}
 <a class="github-fork-ribbon fixed" href="{{ profile.cv.url }}" title="Download my CV">Download my CV</a>
+{% endif %}
 
 <header class="center">
 	<a href="{% url 'profile:main' %}">
@@ -7,3 +11,4 @@
 	</a>
 	<div class="mb0 h1 name">{{ profile.get_full_name }}</div>
 </header>
+{% endif %}

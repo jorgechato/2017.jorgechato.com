@@ -4,11 +4,11 @@ from chato.settings import github_api
 import markdown2
 from chato.settings import MEDIA_ROOT
 
-from profiles.models import Experience, Profile, Projects, Technical
+from profiles.models import Experience, Project, Technical
 
 
 class RepoDetailView(DetailView):
-    model = Projects
+    model = Project
 
     def get_context_data(self, *args, **kwargs):
         context = super(RepoDetailView, self).get_context_data(*args, **kwargs)
@@ -44,7 +44,7 @@ class MainView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(MainView, self).get_context_data(*args, **kwargs)
-        context['repos'] = Projects.objects.all()
+        context['repos'] = Project.objects.all()
         context['skills'] = Technical.objects.all()
         context['experiences'] = Experience.objects.all()
 

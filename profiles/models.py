@@ -47,8 +47,8 @@ class Experience(models.Model):
     position = models.CharField(max_length=240, blank=True)
     url = models.URLField(blank=True)
     location = models.CharField(max_length=240, blank=True)
-    start_at = models.DateTimeField(blank=True)
-    end_at = models.DateTimeField(blank=True)
+    start_at = models.DateTimeField(blank=True, null=True)
+    end_at = models.DateTimeField(blank=True, null=True)
     description = RichTextField()
 
     def __str__(self):
@@ -61,7 +61,7 @@ class Experience(models.Model):
         ordering = ('-start_at',)
 
 
-class Projects(models.Model):
+class Project(models.Model):
     thumbnail = models.ImageField(upload_to="projects/")
     owner_name = models.CharField(max_length=240)
     repo_name = models.CharField(max_length=240)

@@ -3,7 +3,7 @@ from django.contrib import admin
 from import_export.admin import ImportExportActionModelAdmin
 from ckeditor.widgets import CKEditorWidget
 
-from profiles.models import Profile, Projects, Experience, Technical
+from profiles.models import Profile, Project, Experience, Technical
 
 
 class ProfileAdminForm(forms.ModelForm):
@@ -64,6 +64,6 @@ class TechnicalAdmin(ImportExportActionModelAdmin):
 
 
 admin.site.register(Profile, ProfileAdmin)
-admin.site.register(Projects, ProjectsAdmin)
+admin.site.register(Project, ProjectsAdmin)
 admin.site.register(Experience, ExperienceAdmin)
 admin.site.register(Technical, TechnicalAdmin)
