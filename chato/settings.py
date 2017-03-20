@@ -96,15 +96,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Ckeditor config
 CKEDITOR_CONFIGS = {
         'default': {
-            'skin': 'moono',
+            'skin': 'moono-lisa',
+            "codeSnippet_theme": "github",
             'toolbar_OrggueToolbar': [
-                {'name': 'document', 'items': ['Source', '-', 'Save',
-                    'NewPage', 'Preview', 'Print', '-', 'Templates']},
-                {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste',
-                    'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+                {'name': 'document', 'items': ['Source']},
                 {'name': 'links', 'items': ['Link', 'Unlink']},
-                {'name': 'insert', 'items': ['Iframe', 'Image','Upload', 'Table',
-                    'HorizontalRule', 'Smiley', 'SpecialChar']}, '/',
+                {'name': 'insert', 'items': ['CodeSnippet', 'Iframe', 'Image']},
+                {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+                {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+                {'name': 'styles', 'items': ['Styles', 'Format', 'FontSize']},
                 {'name': 'basicstyles', 'items': [
                     'Bold', 'Italic', 'Underline', 'Strike',
                     'Subscript', 'Superscript', '-', 'RemoveFormat']},
@@ -112,29 +112,16 @@ CKEDITOR_CONFIGS = {
                     'NumberedList', 'BulletedList', '-', 'Outdent',
                     'Indent', '-', 'Blockquote', 'CreateDiv', '-',
                     'JustifyLeft', 'JustifyCenter', 'JustifyRight',
-                    'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language']},
-                {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-                {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
-                {'name': 'styles', 'items': ['Styles', 'Format', 'FontSize']},
+                    'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']},
                 ],
             'toolbar': 'OrggueToolbar',
             'tabSpaces': 4,
             'allowedContent': True,
             'extraPlugins': ','.join(
                 [
-                    'image2',
+                    'codesnippet',
                     'iframe',
-                    'div',
                     'autolink',
-                    'autoembed',
-                    'embedsemantic',
-                    'autogrow',
-                    'widget',
-                    'lineutils',
-                    'clipboard',
-                    'dialog',
-                    'dialogui',
-                    'elementspath'
                     ]),
                 }
         }

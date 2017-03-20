@@ -1,4 +1,5 @@
 {% extends "_layouts/base.html"  %}
+{% load static from staticfiles %}
 {% load emoji_tags %}
 
 {% block title %}{{ object.title | title }} - {{ block.super }}{% endblock title %}
@@ -16,6 +17,7 @@
 		<h1>
 			{{ object.title|emoji_replace|safe }}
 		</h1>
+		<hr class="hr-text" data-content="{{ object.published_at|date:"M Y" }}">
 		<p>
 		<a href="{{ object.get_absolute_url }}">
 			{% if object.thumbnail %}
@@ -34,3 +36,9 @@
 	</div>
 </div>
 {% endblock content %}
+
+
+{% block footer%}
+<script src="{% static 'script/highlight.min.js' %}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
