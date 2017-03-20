@@ -172,6 +172,7 @@ except ImportError:
     from github import Github
     from instagram.client import InstagramAPI
     from os import environ
+    import dj_database_url
 
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = environ.get('SECRET_KEY')
@@ -185,13 +186,4 @@ except ImportError:
     email = environ.get('email')
 
     # Database
-    DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'NAME': environ.get('NAME'),
-                'USER': environ.get('USER'),
-                'PASSWORD': environ.get('PASSWORD'),
-                'HOST': environ.get('HOST'),
-                'PORT': environ.get('PORT'),
-                }
-            }
+    DATABASES['default'] = dj_database_url.config()
