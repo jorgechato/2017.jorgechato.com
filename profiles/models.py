@@ -83,7 +83,7 @@ class Project(models.Model):
         self.description = repo.description
         self.url = repo.html_url
         self.updated_at = repo.updated_at
-        super(Projects, self).save(*arg, **kwargs)
+        super(Project, self).save(*arg, **kwargs)
 
     def get_full_name(self):
         return "{}/{}".format(self.owner_name, self.repo_name)
