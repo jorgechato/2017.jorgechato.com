@@ -15,7 +15,7 @@ class Event(models.Model):
         return self.title
 
     def __unicode__(self):
-        return unicode(self.title)
+        return self.title
 
     class Meta:
         ordering = ('-start_at',)

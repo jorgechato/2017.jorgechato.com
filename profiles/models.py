@@ -17,7 +17,7 @@ class Profile(models.Model):
         return "{} {}".format(self.first_name, self.last_name)
 
     def __unicode__(self):
-        return unicode(self.get_full_name)
+        return "{} {}".format(self.first_name, self.last_name)
 
     def save(self, *arg, **kwargs):
         user = User.objects.get(email=ls.email)
@@ -38,7 +38,7 @@ class Technical(models.Model):
         return self.category
 
     def __unicode__(self):
-        return unicode(self.category)
+        return self.category
 
 
 class Experience(models.Model):
@@ -55,7 +55,7 @@ class Experience(models.Model):
         return self.company_name
 
     def __unicode__(self):
-        return unicode(self.company_name)
+        return self.company_name
 
     class Meta:
         ordering = ('-start_at',)
@@ -74,7 +74,7 @@ class Project(models.Model):
         return self.repo_name
 
     def __unicode__(self):
-        return unicode(self.repo_name)
+        return self.repo_name
 
     def save(self, *arg, **kwargs):
         self.slug = "{}-{}".format(self.owner_name, self.repo_name)

@@ -29,7 +29,7 @@ class Post(models.Model):
         return self.title
 
     def __unicode__(self):
-        return unicode(self.slug)
+        return self.slug
 
     def save(self, *arg, **kwargs):
         self.slug = slugify(self.title)
