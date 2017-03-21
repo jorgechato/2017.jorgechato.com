@@ -1,4 +1,5 @@
 import base64
+import os
 from django.views.generic import TemplateView, DetailView
 from chato.settings import github_api
 import markdown2
@@ -21,7 +22,11 @@ class RepoDetailView(DetailView):
 
         readme = base64.b64decode(encod_readme)
 
-        f = open('{}/{}.md'.format(MEDIA_ROOT, self.object.repo_name), 'wb+')
+        directory = MEDIA_ROOT
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        f = open('{}/{}.md'.format(directory, self.object.repo_name), 'wb+')
         f.write(readme)
         f.close()
 
