@@ -7,8 +7,8 @@
 
 
 {% block content%}
-{% for object in object_list %}
 <div class="row mini">
+	{% for object in object_list %}
 	<div class="col-md-8 col-md-offset-2 posts text-left">
 		<hr class="hr-text" data-content="{{ object.published_at|date:"M Y" }}">
 		<h2>
@@ -21,12 +21,13 @@
 		<a href="{{ object.get_absolute_url }}" class="btn btn-default btn m-b">
 			<i class="fa fa-book"></i> Read More
 		</a>
+	</div>
+	{% empty %}
+	<div class="center flex-auto flex-center">
+		<h2>{{ "There is no articles yet" | upper }}</h2>
+	</div>
+	{% endfor %}
 </div>
-{% empty %}
-<div class="center flex-auto flex-center">
-	<h2>{{ "There is no articles yet" | upper }}</h2>
-</div>
-{% endfor %}
 {% include "pagination.html" %}
 {% endblock %}
 
