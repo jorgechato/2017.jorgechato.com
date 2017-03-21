@@ -3,7 +3,7 @@ from ckeditor.fields import RichTextField
 
 
 class Event(models.Model):
-    thumbnail = models.ImageField(upload_to="events/")
+    thumbnail = models.URLField()
     title = models.CharField(max_length=240)
     url = models.URLField(blank=True)
     location = models.CharField(max_length=240, blank=True)

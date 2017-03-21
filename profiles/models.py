@@ -10,8 +10,8 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=240, blank=True, editable=False)
     email = models.EmailField(blank=True, editable=False)
     bio = RichTextField()
-    avatar = models.ImageField(upload_to="profile/")
-    cv = models.FileField(upload_to="profile/", blank=True)
+    avatar = models.URLField()
+    cv = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
@@ -42,7 +42,7 @@ class Technical(models.Model):
 
 
 class Experience(models.Model):
-    thumbnail = models.ImageField(upload_to="expierience/")
+    thumbnail = models.URLField()
     company_name = models.CharField(max_length=240)
     position = models.CharField(max_length=240, blank=True)
     url = models.URLField(blank=True)
@@ -62,7 +62,7 @@ class Experience(models.Model):
 
 
 class Project(models.Model):
-    thumbnail = models.ImageField(upload_to="projects/")
+    thumbnail = models.URLField()
     owner_name = models.CharField(max_length=240)
     repo_name = models.CharField(max_length=240)
     description = models.TextField(blank=True, editable=False)

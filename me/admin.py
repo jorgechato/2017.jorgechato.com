@@ -23,7 +23,7 @@ class EventAdmin(ImportExportActionModelAdmin):
     ordering = ('-start_at',)
 
     def cover_image(self, obj):
-        tag = '<img src="%s" width="100px">' % obj.thumbnail.url
+        tag = '<img src="%s" width="100px">' % obj.thumbnail
         return tag
 
     def description_tags(self, obj):

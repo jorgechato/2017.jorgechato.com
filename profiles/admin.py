@@ -21,7 +21,7 @@ class ProfileAdmin(ImportExportActionModelAdmin):
     list_display_links = ('cover_image',)
 
     def cover_image(self, obj):
-        tag = '<img src="%s" width="100px">' % obj.avatar.url
+        tag = '<img src="%s" width="100px">' % obj.avatar
         return tag
 
     def bio_tags(self, obj):
@@ -39,7 +39,7 @@ class ProjectsAdmin(ImportExportActionModelAdmin):
     ordering = ('-updated_at',)
 
     def cover_image(self, obj):
-        tag = '<img src="%s" width="100px">' % obj.thumbnail.url
+        tag = '<img src="%s" width="100px">' % obj.thumbnail
         return tag
 
     cover_image.allow_tags = True
@@ -50,7 +50,7 @@ class ExperienceAdmin(ImportExportActionModelAdmin):
     list_display_links = ('cover_image', 'company_name')
 
     def cover_image(self, obj):
-        tag = '<img src="%s" width="100px">' % obj.thumbnail.url
+        tag = '<img src="%s" width="100px">' % obj.thumbnail
         return tag
 
     cover_image.allow_tags = True

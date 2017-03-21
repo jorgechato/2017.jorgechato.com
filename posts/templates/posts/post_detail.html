@@ -6,7 +6,7 @@
 
 {% block image%}
 {% if object.thumbnail %}
-<meta name="twitter:image:src" content="{{ object.thumbnail.url }}"></meta>
+<meta name="twitter:image:src" content="{{ object.thumbnail }}"></meta>
 {% endif %}
 {% endblock %}
 
@@ -21,7 +21,7 @@
 		<p>
 		<a href="{{ object.get_absolute_url }}">
 			{% if object.thumbnail %}
-			<div class="image" style="background-image: url({{ object.thumbnail.url }});"></div>
+			<div class="image" style="background-image: url({{ object.thumbnail }});"></div>
 			{% endif %}
 		</a>
 		</p>
@@ -30,7 +30,6 @@
 				<p>
 				{{ object.content|safe }}
 				</p>
-				<hr>
 			</div>
 		</div>
 	</div>

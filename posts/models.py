@@ -1,19 +1,9 @@
 from __future__ import unicode_literals
-import os
 
 from django.db import models
 from django.core.urlresolvers import reverse
 from slugify import slugify
 from ckeditor.fields import RichTextField
-from django.utils import timezone
-
-
-def content_file_name(instance, filename):
-    ext = filename.split('.')[-1]
-    slug = slugify(instance.title)
-    today = timezone.now().strftime('%Y-%b-%d')
-    filename = "{}/{}/cover.{}".format(today, slug, ext)
-    return os.path.join('historias/', filename)
 
 
 class Post(models.Model):
@@ -23,7 +13,7 @@ class Post(models.Model):
     content = RichTextField()
     published_at = models.DateTimeField()
     public = models.BooleanField(default=True)
-    thumbnail = models.ImageField(upload_to=content_file_name, blank=True)
+    thumbnail = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.title

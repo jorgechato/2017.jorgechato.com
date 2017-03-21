@@ -2,12 +2,12 @@
 
 {% if profile %}
 {% if profile.cv %}
-<a class="github-fork-ribbon fixed" href="{{ profile.cv.url }}" title="Download my CV">Download my CV</a>
+<a class="github-fork-ribbon fixed" href="{{ profile.cv }}" title="Download my CV">Download my CV</a>
 {% endif %}
 
 <header class="center">
 	<a href="{% url 'profile:main' %}">
-		<img class="circle logo" src="{{ profile.avatar.url }}" class="logo" alt="{{ profile.get_full_name }}">
+		<img class="circle logo" src="{{ profile.avatar }}" class="logo" alt="{{ profile.get_full_name }}">
 	</a>
 	<div class="mb0 h1 name">{{ profile.get_full_name }}</div>
 </header>
