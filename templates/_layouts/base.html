@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static from staticfiles %}
 
-<html lang="es">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8"></meta>
 		<meta name="author" content="Jorge Chato"></meta>
@@ -12,11 +12,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
 		<meta name="theme-color" content="#D3367E"></meta>
 		<meta name="twitter:card" content="summary_large_image"></meta>
-		<meta name="twitter:title" content=""></meta>
-		<meta name="twitter:site" content=""></meta>
-		<meta name="twitter:creator" content=""></meta>
+		<meta name="twitter:site" content="jorgechato.com"></meta>
+		<meta name="twitter:creator" content="Jorge Chato"></meta>
+		{% block twitter %}
+		<meta name="twitter:title" content="Jorge Chato personal web page"></meta>
 		<meta name="twitter:description" content=""></meta>
-		{% block image%}
 		<meta name="twitter:image:src" content="{% static 'img/logo.png' %}"></meta>
 		{% endblock %}
 		<base href="/" target=""/>
@@ -47,7 +47,7 @@
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-ga('create', '', 'auto');
+ga('create', 'UA-65839881-1', 'auto');
 ga('send', 'pageview');
 
 			</script>

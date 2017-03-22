@@ -4,10 +4,16 @@
 
 {% block title %}{{ object.title | title }} - {{ block.super }}{% endblock title %}
 
-{% block image%}
+{% block twitter %}
+<meta name="twitter:title" content="{{ object.title|safe }}"></meta>
+<meta name="twitter:description" content="{{ object.content|safe|truncatechars:140 }}"></meta>
 {% if object.thumbnail %}
 <meta name="twitter:image:src" content="{{ object.thumbnail }}"></meta>
 {% endif %}
+{% endblock %}
+
+{% block meta%}
+<meta name="Description" content="{{ object.content|safe|truncatechars:140 }}"></meta>
 {% endblock %}
 
 
