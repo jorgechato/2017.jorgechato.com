@@ -58,7 +58,7 @@ class Experience(models.Model):
         return self.company_name
 
     class Meta:
-        ordering = ('-start_at',)
+        ordering = ('-end_at',)
 
 
 class Project(models.Model):
