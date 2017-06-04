@@ -6,33 +6,33 @@
 			<div class="panel-heading" style="background-image: url({{ object.thumbnail }});"></div>
 
 			<div class="panel-body text-center">
-				<strong>
-					<h4 class="">{{ object.repo_name }}{{ object.title }}</h4>
-				</strong>
+				<h3 class="">{{ object.repo_name }}{{ object.title }}</h3>
 				{% if object.location %}
-				{{ object.location }}
+				<div style="color:#616f67;">
+					{{ object.location }}
+				</div>
 				{% endif %}
 				{% if title == "Events" %}
 				{{ object.description|safe }}
-				<i><p>
+				<i style="color:#616f67;"><p>
 					{% if object.start_at %}
 					{{ object.start_at|date:"M Y" }}
 					{% endif %}
 					{% if object.end_at %}
 					- {{ object.end_at|date:"M Y" }}
 					{% endif %}
-				</p></i>
-				{% if object.url %}
-				<a href="{{ object.url }}" class="btn btn-default btn m-b">
-					<span class="icon icon-add-user"></span> View More
-				</a>
-				{% endif %}
-				{% else %}
-				<p>{{ object.description|truncatechars:50 }}</p>
-				<a href="{{ object.get_absolute_url }}" class="btn btn-default btn m-b">
-					<span class="icon icon-add-user"></span> View More
-				</a>
-				{% endif %}
+					</p></i>
+					{% if object.url %}
+					<a href="{{ object.url }}" class="btn btn-default btn m-b">
+						<span class="icon icon-add-user"></span> View More
+					</a>
+					{% endif %}
+					{% else %}
+					<p>{{ object.description|truncatechars:50 }}</p>
+					<a href="{{ object.get_absolute_url }}" class="btn btn-default btn m-b">
+						<span class="icon icon-add-user"></span> View More
+					</a>
+					{% endif %}
 			</div>
 		</div>
 	</div>
