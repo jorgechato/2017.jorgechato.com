@@ -7,7 +7,7 @@
 
 <header class="center">
 	<a href="{% url 'profile:main' %}">
-		<img class="circle logo" src="{{ profile.avatar }}" class="logo" alt="{{ profile.get_full_name }}">
+		<img class="circle logo" src="{{ profile.avatar }}" style="border-radius: 50%;" alt="{{ profile.get_full_name }}">
 	</a>
 	<div class="mb0 h1 name">{{ profile.get_full_name }}</div>
 </header>
