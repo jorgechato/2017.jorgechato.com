@@ -9,3 +9,8 @@ COPY . /code/
 # Install our requirements.
 RUN pip install -U pip
 RUN pip install -Ur requirements.txt
+
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+
+ENTRYPOINT [ "gunicorn chato.wsgi" ]
