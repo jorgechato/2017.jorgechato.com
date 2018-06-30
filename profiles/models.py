@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from ckeditor.fields import RichTextField
 import chato.settings as ls
 
@@ -79,7 +79,7 @@ class Project(models.Model):
     def save(self, *arg, **kwargs):
         self.slug = "{}-{}".format(self.owner_name, self.repo_name)
         repo = ls.github_api.get_repo(
-                "{}/{}".format(self.owner_name, self.repo_name))
+            "{}/{}".format(self.owner_name, self.repo_name))
         self.description = repo.description
         self.url = repo.html_url
         self.updated_at = repo.updated_at

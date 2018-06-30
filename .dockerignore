@@ -1,0 +1,7 @@
+dbdata/
+static/
+media/
+env.sh
+prod.env
+.gitignore
+.git/

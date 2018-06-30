@@ -1,107 +1,110 @@
 import os
+import dj_database_url
+
+from github import Github
+from instagram.client import InstagramAPI
+
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DEBUG', False)
 
 ALLOWED_HOSTS = [
-        "*",
-        "0.0.0.0",
-        "localhost",
-        ]
+    "*",
+    "0.0.0.0",
+    "localhost",
+]
 
 SITE_ID = 1
 
 # Application definition
 INSTALLED_APPS = [
-        'django.contrib.admin',
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
-        'django.contrib.sites',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',
 
-        'emoji',
-        'import_export',
-        'robots',
-        'gunicorn',
-        'ckeditor',
-        'posts',
-        'profiles',
-        'me',
-        ]
+    'import_export',
+    'robots',
+    'ckeditor',
+    'posts',
+    'profiles',
+    'me',
+]
 
 if DEBUG:
     INSTALLED_APPS += [
-            'django_extensions',
-            'autofixture',
-            ]
+        'django_extensions',
+        'autofixture',
+    ]
     pass
 
 MIDDLEWARE = [
-        'django.middleware.gzip.GZipMiddleware',
-        'django.middleware.security.SecurityMiddleware',
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.common.CommonMiddleware',
-        'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.messages.middleware.MessageMiddleware',
-        'django.middleware.clickjacking.XFrameOptionsMiddleware',
-        ]
+    'django.middleware.gzip.GZipMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 
 ROOT_URLCONF = 'chato.urls'
 
 TEMPLATES = [
-        {
-            'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [
-                os.path.join(BASE_DIR, 'templates'),
-                ],
-            'APP_DIRS': True,
-            'OPTIONS': {
-                'context_processors': [
-                    'django.template.context_processors.debug',
-                    'django.template.context_processors.request',
-                    'django.contrib.auth.context_processors.auth',
-                    'django.contrib.messages.context_processors.messages',
-                    'profiles.context_processors.header',
-                    ],
-                },
-            },
-        ]
-
-WSGI_APPLICATION = 'chato.wsgi.application'
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'profiles.context_processors.header',
+            ],
+        },
+    },
+]
 
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
-        {
-            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-            },
-        {
-            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-            },
-        {
-            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-            },
-        {
-            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-            },
-        ]
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 
 # Ckeditor config
 CKEDITOR_CONFIGS = {
-        'default': {
-            'skin': 'moono-lisa',
-            "codeSnippet_theme": "github",
-            'toolbar_OrggueToolbar': [
+    'default': {
+        'skin': 'moono-lisa',
+        "codeSnippet_theme": "github",
+        'toolbar_OrggueToolbar': [
                 {'name': 'document', 'items': ['Source']},
                 {'name': 'links', 'items': ['Link', 'Unlink']},
-                {'name': 'insert', 'items': ['CodeSnippet', 'Iframe', 'Image']},
+                {'name': 'insert', 'items': [
+                    'CodeSnippet', 'Iframe', 'Image']},
                 {'name': 'colors', 'items': ['TextColor', 'BGColor']},
                 {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
                 {'name': 'styles', 'items': ['Styles', 'Format', 'FontSize']},
@@ -113,18 +116,18 @@ CKEDITOR_CONFIGS = {
                     'Indent', '-', 'Blockquote', 'CreateDiv', '-',
                     'JustifyLeft', 'JustifyCenter', 'JustifyRight',
                     'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']},
-                ],
-            'toolbar': 'OrggueToolbar',
-            'tabSpaces': 4,
-            'allowedContent': True,
-            'extraPlugins': ','.join(
-                [
-                    'codesnippet',
-                    'iframe',
-                    'autolink',
-                    ]),
-                }
-        }
+        ],
+        'toolbar': 'OrggueToolbar',
+        'tabSpaces': 4,
+        'allowedContent': True,
+        'extraPlugins': ','.join(
+            [
+                'codesnippet',
+                'iframe',
+                'autolink',
+            ]),
+    }
+}
 CKEDITOR_UPLOAD_SLUGIFY_FILENAME = True
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 
@@ -146,32 +149,35 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'compass/out'),
-        )
+    os.path.join(BASE_DIR, 'static'),
+)
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'out', 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'out', 'media')
 
-try:
-    from chato.local_settings import *
-except ImportError:
-    from github import Github
-    from instagram.client import InstagramAPI
-    from os import environ
-    import dj_database_url
+github_api = Github(os.environ.get('git_user'), os.environ.get('git_pass'))
 
-    # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = environ.get('SECRET_KEY')
+access_token = os.environ.get('access_token')
+client_secret = os.environ.get('client_secret')
+instagram_id = os.environ.get('instagram_id')
+instagram_api = InstagramAPI(
+    access_token=access_token,
+    client_secret=client_secret,
+)
 
-    github_api = Github(environ.get('git_user'), environ.get('git_pass'))
+email = os.environ.get('email')
 
-    access_token = environ.get('access_token')
-    client_secret = environ.get('client_secret')
-    instagram_api = InstagramAPI(access_token=access_token, client_secret=client_secret)
-
-    email = environ.get('email')
-
-    # Database
-    DATABASES = {}
+# Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('POSTGRES_DB'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST', 'localhost'),
+        'PORT': '',
+    }
+}
+if os.environ.get('DATABASE_URL'):
     DATABASES['default'] = dj_database_url.config()

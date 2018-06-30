@@ -20,6 +20,8 @@
 					{% endif %}
 					{% if object.end_at %}
 					- {{ object.end_at|date:"M Y" }}
+					{% else %}
+					- now
 					{% endif %}
 					</p></i>
 					{% if object.url %}

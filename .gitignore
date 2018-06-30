@@ -56,6 +56,7 @@ local_settings.py
 
 # celery
 *.db
+dbdata/
 
 # Flask stuff:
 instance/
@@ -80,7 +81,7 @@ target/
 celerybeat-schedule
 
 # dotenv
-.env
+**/*.env
 
 # virtualenv
 venv/
@@ -95,34 +96,13 @@ ENV/
 **/*.pyc
 **/migrations/*
 media
-static
+out
 compass/.sass-cache
 **/local_settings.py
 **/*.swp
 
-# Compiled class file
-*.class
-
 # Log file
 *.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see
-http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
 
 #intellij
 Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion,

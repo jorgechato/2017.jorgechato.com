@@ -1,6 +1,5 @@
 {% extends "_layouts/base.html"  %}
 {% load static from staticfiles %}
-{% load emoji_tags %}
 
 
 {% block title %}{{ "Articles" | title }} - {{ block.super }}{% endblock title %}
@@ -13,7 +12,7 @@
 		<hr class="hr-text" data-content="{{ object.published_at|date:"M Y" }}">
 		<h2>
 			<a href="{{ object.get_absolute_url }}">
-				{{ object.title|emoji_replace|safe }}
+				{{ object.title|safe }}
 			</a>
 		</h2>
 
