@@ -1,7 +1,7 @@
 dbdata/
 static/
 media/
-env.sh
-prod.env
+logs/
+**/env
 .gitignore
 .git/

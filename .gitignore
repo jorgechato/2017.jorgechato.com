@@ -96,6 +96,7 @@ ENV/
 **/*.pyc
 **/migrations/*
 media
+static
 out
 compass/.sass-cache
 **/local_settings.py

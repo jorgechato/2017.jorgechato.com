@@ -1,6 +1,11 @@
 #!/bin/sh
 
 
+STATIC_DIR=/code/static
+if [ ! -d $STATIC_DIR || ! -z "$(ls -A $STATIC_DIR)" ]; then
+	python manage.py collectstatic
+fi
+
 python manage.py makemigrations me
 python manage.py makemigrations posts
 python manage.py makemigrations profiles
