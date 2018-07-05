@@ -101,6 +101,7 @@ out
 compass/.sass-cache
 **/local_settings.py
 **/*.swp
+**/.DS_Store
 
 # Log file
 *.log

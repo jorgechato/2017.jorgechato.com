@@ -6,9 +6,10 @@ from django.conf.urls import include
 
 urlpatterns = [
     url(r'^articles/', include('posts.urls'), name="articles"),
-    url(r'^me/', include('me.urls'), name="me"),
+    url(r'^events/', include('events.urls'), name="events"),
+    url(r'^work/', include('work.urls'), name="work"),
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('profiles.urls'), name="profile"),
+    url(r'^', include('home.urls'), name="home"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

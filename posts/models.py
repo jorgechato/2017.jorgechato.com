@@ -6,14 +6,14 @@ from slugify import slugify
 from ckeditor.fields import RichTextField
 
 
-class Post(models.Model):
+class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=240)
     slug = models.SlugField(max_length=240, blank=True, editable=False)
     content = RichTextField()
     published_at = models.DateTimeField()
     public = models.BooleanField(default=True)
-    thumbnail = models.URLField(blank=True, null=True)
+    thumbnail = models.ImageField(upload_to='articles', blank=True)
 
     def __str__(self):
         return self.title
@@ -23,7 +23,7 @@ class Post(models.Model):
 
     def save(self, *arg, **kwargs):
         self.slug = slugify(self.title)
-        super(Post, self).save(*arg, **kwargs)
+        super(Article, self).save(*arg, **kwargs)
 
     def get_absolute_url(self):
         return reverse('articles:detail', kwargs={'slug': self.slug})

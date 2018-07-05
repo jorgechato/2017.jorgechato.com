@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load static from staticfiles %}
+{% load compress %}
+
 
 <html lang="en">
 	<head>
@@ -23,7 +25,16 @@
 		<link rel="icon" href="{%  static 'img/favicon.png' %}">
 		<title>{% block title %}{{ "Jorge Chato" | upper }}{% endblock %}</title>
 		{% block head%}
-		<link rel="stylesheet" type="text/css" href="{% static 'style/base.css' %}">
+		{% compress css %}		
+		<link rel="stylesheet" type="text/css" href="{% static 'style/vendor/github-calendar.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'style/vendor/gh-fork-ribbon.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'style/vendor/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/x-scss" href="{% static 'style/vendor/fontawesome/fontawesome.scss' %}">
+		<link rel="stylesheet" type="text/x-scss" href="{% static 'style/vendor/fontawesome/fa-regular.scss' %}">
+		<link rel="stylesheet" type="text/x-scss" href="{% static 'style/vendor/fontawesome/fa-brands.scss' %}">
+		<link rel="stylesheet" type="text/x-scss" href="{% static 'style/vendor/fontawesome/fa-solid.scss' %}">
+		<link rel="stylesheet" type="text/x-scss" href="{% static 'style/me.scss' %}">
+		{% endcompress %}
 		{% endblock %}
 	</head>
 	<body>
@@ -31,6 +42,10 @@
 		{% include "_modules/nav.html" %}
 
 		<div class="container-overflow-wrap">
+			<div class="landing">
+				{% block landing%}
+				{% endblock %}
+			</div>
 			<div class="container">
 				{% block content%}
 				{% endblock %}

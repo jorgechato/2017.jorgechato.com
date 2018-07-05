@@ -1,0 +1,37 @@
+{% extends "_layouts/base.html"  %}
+{% load static from staticfiles %}
+
+
+{% block title %}{{ "Articles" | title }} - {{ block.super }}{% endblock title %}
+
+
+{% block content%}
+<div class="row mini">
+	{% for object in object_list %}
+	<div class="col-md-8 col-md-offset-2 posts text-left">
+		<hr class="hr-text" data-content="{{ object.published_at|date:"M Y" }}">
+		<h2>
+			<a href="{{ object.get_absolute_url }}">
+				{{ object.title|safe }}
+			</a>
+		</h2>
+
+		{{ object.content|safe|truncatechars:300 }}
+		<a href="{{ object.get_absolute_url }}" class="btn btn-default btn m-b">
+			<i class="far fa-bookmark"></i> Read More
+		</a>
+	</div>
+	{% empty %}
+	<div class="center flex-auto flex-center">
+		<h2>{{ "There is no articles yet" | upper }}</h2>
+	</div>
+	{% endfor %}
+</div>
+{% include "pagination.html" %}
+{% endblock %}
+
+
+{% block footer%}
+<script src="{% static 'script/highlight.min.js' %}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}

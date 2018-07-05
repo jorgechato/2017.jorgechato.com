@@ -1,0 +1,21 @@
+{% extends "_layouts/base.html"  %}
+{% load static from staticfiles %}
+
+
+{% block title %}{{ "Events" | title }} - {{ block.super }}{% endblock title %}
+
+{% block content%}
+{% for description in descriptions %}
+	{% if description.title %}
+		<h2>{{ description.title|title }}</h2>
+	{% endif %}
+	<div class="work row">
+		<div class="col-md-8 col-md-offset-2">
+			{{ description.content|safe }}
+		</div>
+	</div>
+{% endfor %}
+
+{% include "_modules/list.html" with objects=events title="Events" %}
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "_layouts/base.html"  %}
+{% load static from staticfiles %}
+
+
+{% block landing %}
+{% for object in sections %}
+<div class="l-background">
+	{% if object.title %}
+		<h2>{{ object.title|title }}</h2>
+	{% endif %}
+	<div class="work row">
+		<div class="col-md-8 col-md-offset-2">
+			{{ object.description|safe }}
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+<div class="instagram">
+	<h2>A look into my life</h2>
+	{% for object in pictures %}
+	{{ object.url }}
+	<img src="{{ object.images.standard_resolution.url }}" alt="">
+	{% endfor %}
+</div>
+{% endblock %}

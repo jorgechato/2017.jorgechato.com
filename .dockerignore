@@ -3,5 +3,8 @@ static/
 media/
 logs/
 **/env
+**/migrations/*
+**/*.pyc
 .gitignore
 .git/
+**/.DS_Store

@@ -9,4 +9,4 @@ COPY . /code
 RUN pip install -U pip
 RUN pip install -Ur requirements.txt
 
-ENTRYPOINT ./hack.sh
+ENTRYPOINT ./utilities/wait-for-it.sh database:5432 --strict -- ./utilities/hack.sh

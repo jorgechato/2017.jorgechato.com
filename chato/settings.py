@@ -11,12 +11,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DEBUG = os.getenv('DEBUG', False)
+DEBUG = os.getenv('DEBUG', False) == 'True'
 
 ALLOWED_HOSTS = [
     "*",
     "0.0.0.0",
     "localhost",
+    "backend",
+    "jorgechato.com",
 ]
 
 SITE_ID = 1
@@ -31,12 +33,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    'compressor',
     'import_export',
     'robots',
     'ckeditor',
     'posts',
-    'profiles',
-    'me',
+    'work',
+    'events',
+    'home',
 ]
 
 if DEBUG:
@@ -72,7 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'profiles.context_processors.header',
+                'work.context_processors.header',
             ],
         },
     },
@@ -144,9 +148,29 @@ USE_L10N = True
 USE_TZ = True
 
 
+COMPRESS_PRECOMPILERS = (
+    ('text/x-sass', 'django_libsass.SassCompiler'),
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+)
+
+COMPRESS_ENABLED = True
+
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+COMPRESS_URL = STATIC_URL
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'staticfiles'),
@@ -155,6 +179,7 @@ STATICFILES_DIRS = (
 CKEDITOR_UPLOAD_PATH = "uploads/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+COMPRESS_ROOT = STATIC_ROOT
 
 github_api = Github(os.environ.get('git_user'), os.environ.get('git_pass'))
 

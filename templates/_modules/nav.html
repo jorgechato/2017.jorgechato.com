@@ -1,39 +1,33 @@
 <nav>
+	<div class="joker">
+		<div class="ruler col-xs-6 col-xs-offset-3"></div>
+		<div class="ruler col-xs-8 col-xs-offset-2"></div>
+	</div>
+
 	<ul class="nav nav-pills">
-		<li role="presentation" class="hint--top" aria-label="Go to my work and projects">
-			<a href="{% url 'profile:main' %}">
-				<!-- <i class="fa fa-home" aria-hidden="true"></i> -->
+		<li role="presentation">
+			<a href="{% url 'home:main' %}">
 				Home
 			</a>
 		</li>
-		<li role="presentation" class="hint--top" aria-label="Something about me">
-			<a href="{% url 'me:main' %}">
-				<!-- <i class="fa fa-smile-o" aria-hidden="true"></i> -->
-				About me
+		<li role="presentation">
+			<a href="{% url 'work:main' %}">
+				Work
 			</a>
 		</li>
-		<li role="presentation" class="hint--top" aria-label="Read some of my articles">
+		<li role="presentation">
+			<a href="{% url 'events:main' %}">
+				Events
+			</a>
+		</li>
+		<li role="presentation">
 			<a href="{% url 'articles:list' %}">
-				<!-- <i class="fa fa-book" aria-hidden="true"></i> -->
 				Articles
 			</a>
 		</li>
-		<li role="presentation" class="hint--top" aria-label="Check out my Github">
-			<a href="//github.com/jorgechato/">
-				<!-- <i class="fa fa-github" aria-hidden="true"></i> -->
-				Github
-			</a>
-		</li>
-		<li role="presentation" class="hint--top" aria-label="Check out my Linkedin">
-			<a href="//www.linkedin.com/in/jorgechato/">
-				<!-- <i class="fa fa-linkedin" aria-hidden="true"></i> -->
-				Linkedin
-			</a>
-		</li>
-		<li role="presentation" class="hint--top" aria-label="Check out my Keybase">
-			<a href="//keybase.io/jorgechato">
-				<!-- <i class="fab fa-keybase" aria-hidden="true"></i> -->
-				Keybase
+		<li role="presentation" class="hidden-xs">
+			<a href="//www.amazon.com/shop/jorgechato">
+				<i class="fab fa-amazon" aria-hidden="true"></i>
 			</a>
 		</li>
 	</ul>

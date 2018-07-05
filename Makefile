@@ -1,12 +1,17 @@
 .PHONY: deploy backend db
 
-default: rm db back
+default: local
+
+local: rm clean
+	docker rmi backend
+	docker build -t backend .
+	docker-compose up -d
 
 deploy:
 	docker-compose up -d
 
 back:
-	docker run -p 8000:8000 --env-file env/jorgechato.com/${ENV}.env -v ${PWD}/trol:/code/static --restart on-failure --name backend -d backend
+	docker run -p 8000:8000 --env-file env/jorgechato.com/${ENV}.env -v ${PWD}/static:/code/static --restart on-failure --name backend -d backend
 
 db:
 	docker run -p 5432:5432 --env-file env/jorgechato.com/${ENV}.env -v ${PWD}/dbdata:/var/lib/postgresql/data --restart on-failure --name database -d postgres:alpine
@@ -22,8 +27,8 @@ rmd:
 rmn:
 	docker rm -f nginx
 
-clean: $(rm) $(rmi)
-	rm -rf out dbdata static logs
+clean:
+	rm -rf out static logs
 
 collect:
 	python manage.py collectstatic
@@ -38,3 +43,8 @@ build: rmi
 rmi:
 	docker rmi -f backend
 	docker rmi -f quay.io/orggue/jorgechato
+
+restartn:
+	docker rm -f nginx
+	rm -rf logs
+	docker-compose up -d webserver

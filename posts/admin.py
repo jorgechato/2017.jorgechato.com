@@ -2,20 +2,21 @@ from django import forms
 from django.contrib import admin
 from import_export.admin import ImportExportActionModelAdmin
 from ckeditor.widgets import CKEditorWidget
+from django.utils.safestring import mark_safe
 
-from posts.models import Post
+from posts.models import Article
 
 
-class PostAdminForm(forms.ModelForm):
+class ArticleAdminForm(forms.ModelForm):
     content = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
-        model = Post
+        model = Article
         fields = "__all__"
 
 
-class PostAdmin(ImportExportActionModelAdmin):
-    form = PostAdminForm
+class ArticleAdmin(ImportExportActionModelAdmin):
+    form = ArticleAdminForm
 
     list_display = ('cover_image', 'title', 'published_at', 'public', 'slug')
     list_filter = ('published_at', 'public')
@@ -24,12 +25,10 @@ class PostAdmin(ImportExportActionModelAdmin):
     ordering = ('-published_at',)
 
     def cover_image(self, obj):
-        tag = '<img src="https://placeholdit.imgix.net/~text?txtsize=23&bg=000000&txtclr=D3367E&txt=%s&w=200&h=100">' % obj.title
+        tag = '<img src="https://placeholdit.imgix.net/~text?txtsize=23&bg=000000&txtclr=FFFFFF&txt=%s&w=200&h=100">' % obj.title
         if obj.thumbnail:
-            tag = '<img src="https://placeholdit.imgix.net/~text?txtsize=23&bg=D3367E&txtclr=000000&txt=%s&w=200&h=100">' % obj.title
-        return tag
-
-    cover_image.allow_tags = True
+            tag = '<img src="%s" width="100px">' % obj.thumbnail.url
+        return mark_safe(tag)
 
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(Article, ArticleAdmin)
