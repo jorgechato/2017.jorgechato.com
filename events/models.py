@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Event(models.Model):
@@ -9,7 +9,7 @@ class Event(models.Model):
     location = models.CharField(max_length=240, blank=True)
     start_at = models.DateTimeField(blank=True, null=True)
     end_at = models.DateTimeField(blank=True, null=True)
-    description = RichTextField()
+    description = RichTextUploadingField()
 
     def __str__(self):
         return self.title
@@ -23,7 +23,7 @@ class Event(models.Model):
 
 class Description(models.Model):
     title = models.CharField(max_length=240, blank=True)
-    content = RichTextField()
+    content = RichTextUploadingField()
     thumbnail = models.ImageField(upload_to='descriptions', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     public = models.BooleanField(default=True)

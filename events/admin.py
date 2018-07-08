@@ -1,4 +1,3 @@
-from django import forms
 from django.contrib import admin
 from import_export.admin import ImportExportActionModelAdmin
 from ckeditor.widgets import CKEditorWidget
@@ -9,17 +8,7 @@ from events.models import Event
 from events.models import Description
 
 
-class DescriptionAdminForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorWidget())
-
-    class Meta:
-        model = Description
-        fields = "__all__"
-
-
 class DescriptionAdmin(ImportExportActionModelAdmin):
-    form = DescriptionAdminForm
-
     list_display = ('cover_image', 'title', 'created_at', 'public')
     list_display_links = ('cover_image',)
     list_filter = ('created_at', 'public')
@@ -33,17 +22,7 @@ class DescriptionAdmin(ImportExportActionModelAdmin):
         return mark_safe(tag)
 
 
-class EventAdminForm(forms.ModelForm):
-    description = forms.CharField(widget=CKEditorWidget())
-
-    class Meta:
-        model = Event
-        fields = "__all__"
-
-
 class EventAdmin(ImportExportActionModelAdmin):
-    form = EventAdminForm
-
     list_display = ('cover_image', 'title', 'description_tags')
     list_display_links = ('cover_image',)
     search_fields = ('title', 'description')

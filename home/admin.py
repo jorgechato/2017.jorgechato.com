@@ -1,4 +1,3 @@
-from django import forms
 from django.contrib import admin
 from import_export.admin import ImportExportActionModelAdmin
 from ckeditor.widgets import CKEditorWidget
@@ -8,17 +7,7 @@ from django.utils.safestring import mark_safe
 from home.models import Section
 
 
-class SectionAdminForm(forms.ModelForm):
-    description = forms.CharField(widget=CKEditorWidget())
-
-    class Meta:
-        model = Section
-        fields = "__all__"
-
-
 class SectionAdmin(ImportExportActionModelAdmin):
-    form = SectionAdminForm
-
     list_display = ('cover_image', 'order', 'title', 'public')
     list_display_links = ('cover_image',)
     search_fields = ('title', 'order')

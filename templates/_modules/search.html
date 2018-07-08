@@ -1,6 +1,12 @@
-<form class="navbar-form navbar-left" action="{% url 'articles:search' %}" method="get" accept-charset="utf-8">
-	<div class="form-group">
-		<input type="text" class="form-control" placeholder="Search" name='q'>
+<div id="form-search" class="overlay">
+	<span class="closebtn" id="btn-search-close" title="Close Overlay">x</span>
+		<div class="overlay-content">
+			<form
+				action="{% url 'articles:search' %}"
+				method="get"
+				accept-charset="utf-8">
+				<input type="search" class="sb" name="q" autocomplete="off" placeholder="What would you like to search for?" />
+				<button type="submit" class="sbtn fas fa-search"></button>
+			</form>
 	</div>
-	<button type="submit" class="btn btn-default">Submit</button>
-</form>
+</div>

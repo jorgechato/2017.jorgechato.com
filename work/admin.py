@@ -1,4 +1,3 @@
-from django import forms
 from django.contrib import admin
 from import_export.admin import ImportExportActionModelAdmin
 from ckeditor.widgets import CKEditorWidget
@@ -12,7 +11,7 @@ class ProfileAdmin(ImportExportActionModelAdmin):
     list_display_links = ('cover_image',)
 
     def cover_image(self, obj):
-        tag = '<img src="%s" width="100px">' % obj.avatar
+        tag = '<img src="%s" width="100px">' % obj.avatar.url
         return mark_safe(tag)
 
     def bio_tags(self, obj):

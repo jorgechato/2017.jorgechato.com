@@ -3,14 +3,14 @@ from __future__ import unicode_literals
 from django.db import models
 from django.urls import reverse
 from slugify import slugify
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=240)
     slug = models.SlugField(max_length=240, blank=True, editable=False)
-    content = RichTextField()
+    content = RichTextUploadingField()
     published_at = models.DateTimeField()
     public = models.BooleanField(default=True)
     thumbnail = models.ImageField(upload_to='articles', blank=True)
