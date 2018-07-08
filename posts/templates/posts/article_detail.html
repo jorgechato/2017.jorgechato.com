@@ -16,8 +16,9 @@
 {% endblock %}
 
 
-{% block content%}
-<div class="col-md-8 col-md-offset-2 posts text-left">
+{% block content %}
+
+<div class="posts text-left">
 	<div class="post">
 		<h1>
 			{{ object.title|safe }}
@@ -30,7 +31,7 @@
 			{% endif %}
 		</a>
 		</p>
-		<div class="row">
+		<div class="col-md-8 col-md-offset-2 row">
 			<div class="col-md-10 col-md-offset-1">
 				<p>
 				{{ object.content|safe }}

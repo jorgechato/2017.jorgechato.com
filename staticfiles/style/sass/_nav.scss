@@ -1,0 +1,21 @@
+nav, .foot {
+  .ruler {
+    background: black none repeat scroll 0% 0%;
+    border: 0px none;
+    height: 1px;
+    margin-bottom: 4px;
+  }
+  .joker {
+    height: 1em;
+  }
+  .nav-pills {
+    display: inline-block;
+    li > a {
+      font-size: 1.2em;
+      &:hover {
+        background: transparent !important;
+		text-decoration: none !important;
+      }
+    }
+  }
+}

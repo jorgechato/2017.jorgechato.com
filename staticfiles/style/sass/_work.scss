@@ -1,0 +1,30 @@
+.work {
+  margin-top: 1em;
+  .experience {
+    margin-top: 70px;
+    ul {
+      text-align: left;
+    }
+    .panel-thumbnail-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-top: -70px;
+      margin-bottom: 5px;
+      border-radius: 100%;
+    }
+    h3 {
+      margin-top: 0px;
+    }
+    h4, i {
+      color: #616f67;
+    }
+  }
+  h2 {
+    margin: 0 0 1em 0;
+  }
+  .panel-heading {
+    height: 150px;
+    background-size: cover;
+  }
+}
