@@ -7,17 +7,7 @@ from django.utils.safestring import mark_safe
 from posts.models import Article
 
 
-class ArticleAdminForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorWidget())
-
-    class Meta:
-        model = Article
-        fields = "__all__"
-
-
 class ArticleAdmin(ImportExportActionModelAdmin):
-    form = ArticleAdminForm
-
     list_display = ('cover_image', 'title', 'published_at', 'public', 'slug')
     list_filter = ('published_at', 'public')
     list_display_links = ('cover_image', 'title',)

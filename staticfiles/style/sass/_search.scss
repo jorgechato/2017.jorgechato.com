@@ -1,0 +1,7 @@
+#form-search{
+	overflow: hidden;
+	transition: height .3s linear;
+	& .hidden {
+		height: 0!important;
+	}
+}

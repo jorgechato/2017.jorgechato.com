@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'import_export',
     'robots',
     'ckeditor',
+    'ckeditor_uploader',
 
     'posts',
     'work',

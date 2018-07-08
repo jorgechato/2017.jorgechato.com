@@ -1,13 +1,12 @@
 from django.db import models
-from slugify import slugify
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Section(models.Model):
     thumbnail = models.ImageField(upload_to='sections', blank=True)
     title = models.CharField(max_length=240, blank=True)
     order = models.IntegerField()
-    description = RichTextField()
+    description = RichTextUploadingField()
     public = models.BooleanField(default=False)
 
     def __str__(self):

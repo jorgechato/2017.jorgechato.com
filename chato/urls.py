@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^events/', include('events.urls'), name="events"),
     url(r'^work/', include('work.urls'), name="work"),
     url(r'^admin/', admin.site.urls),
+    url(r'^editor/', include('ckeditor_uploader.urls')),
     url(r'^', include('home.urls'), name="home"),
 ]
 
