@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form
 	   class="form-search"
 	   action="{% url 'articles:search' %}"
@@ -6,3 +7,17 @@
 	<input type="search" class="sb" name="q" autocomplete="off" placeholder="What would you like to search for?" />
 	<button type="submit" class="sbtn fas fa-search"></button>
 </form>  
+=======
+<div id="form-search" class="overlay">
+	<span class="closebtn" id="btn-search-close" title="Close Overlay">x</span>
+		<div class="overlay-content">
+			<form
+				action="{% url 'articles:search' %}"
+				method="get"
+				accept-charset="utf-8">
+				<input type="search" class="sb" name="q" autocomplete="off" placeholder="What would you like to search for?" />
+				<button type="submit" class="sbtn fas fa-search"></button>
+			</form>
+	</div>
+</div>
+>>>>>>> 9d3c62a714f9fc93ad731879a9603d85d1311244

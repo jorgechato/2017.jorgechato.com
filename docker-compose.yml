@@ -16,7 +16,7 @@ services:
   backend:
     container_name: backend
     restart: on-failure
-    image: backend # quay.io/orggue/jorgechato
+    image: quay.io/orggue/jorgechato
     depends_on:
       - database
     env_file: env/jorgechato.com/$ENV.env
@@ -30,17 +30,18 @@ services:
 
   webserver:
     container_name: nginx
-    image: nginx:alpine
-    env_file: env/jorgechato.com/$ENV.env
+    image: quay.io/orggue/nginx-le
     depends_on:
       - database
       - backend
+    env_file: env/jorgechato.com/$ENV.env
     volumes:
       - ./static:/static
       - ./media:/media
-      - ./logs:/var/log/nginx
-      - ./env/jorgechato.com/config/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./env/jorgechato.com/config/nginx/certs:/etc/ssl/certs
+      - ./nginx/letsencrypt:/etc/letsencrypt
+      - ./nginx/logs:/var/log/nginx
+      - ./env/jorgechato.com/config/nginx/service.conf:/etc/nginx/service.conf
+      - ./nginx/certs:/etc/nginx/ssl
     ports:
       - "80:80"
       - "443:443"
