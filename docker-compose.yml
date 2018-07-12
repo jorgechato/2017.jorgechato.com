@@ -16,6 +16,7 @@ services:
   backend:
     container_name: backend
     restart: on-failure
+    # image: backend
     image: quay.io/orggue/jorgechato
     depends_on:
       - database
