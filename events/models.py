@@ -1,9 +1,15 @@
+import os
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
+from imagekit.models import ProcessedImageField
+from chato.utilities import content_name
 
 
 class Event(models.Model):
-    thumbnail = models.ImageField(upload_to='events')
+    thumbnail = ProcessedImageField(
+        upload_to=content_name(os.path.join('events', 'events')),
+        options={'quality': 60}
+    )
     title = models.CharField(max_length=240)
     url = models.URLField(blank=True)
     location = models.CharField(max_length=240, blank=True)
@@ -24,7 +30,11 @@ class Event(models.Model):
 class Description(models.Model):
     title = models.CharField(max_length=240, blank=True)
     content = RichTextUploadingField()
-    thumbnail = models.ImageField(upload_to='descriptions', blank=True)
+    thumbnail = ProcessedImageField(
+        upload_to=content_name(os.path.join('events', 'descriptions')),
+        options={'quality': 60},
+        blank=True,
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     public = models.BooleanField(default=True)
 

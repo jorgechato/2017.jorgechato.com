@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 import chato.settings as ls
+from imagekit.models import ProcessedImageField
+from chato.utilities import content_name
 
 
 class Profile(models.Model):
@@ -11,7 +13,10 @@ class Profile(models.Model):
     email = models.EmailField(blank=True, editable=False)
     bio = RichTextField(blank=True, null=True)
     avatar = models.URLField()
-    avatar = models.ImageField(upload_to='profile')
+    avatar = ProcessedImageField(
+        upload_to=content_name('profile'),
+        options={'quality': 60}
+    )
     cv = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -47,7 +52,10 @@ class Technical(models.Model):
 
 
 class Experience(models.Model):
-    thumbnail = models.ImageField(upload_to='experience')
+    thumbnail = ProcessedImageField(
+        upload_to=content_name('experience'),
+        options={'quality': 60}
+    )
     company_name = models.CharField(max_length=240)
     position = models.CharField(max_length=240, blank=True)
     url = models.URLField(blank=True)
@@ -67,7 +75,10 @@ class Experience(models.Model):
 
 
 class Project(models.Model):
-    thumbnail = models.ImageField(upload_to='projects')
+    thumbnail = ProcessedImageField(
+        upload_to=content_name('projects'),
+        options={'quality': 60}
+    )
     owner_name = models.CharField(max_length=240)
     repo_name = models.CharField(max_length=240)
     description = models.TextField(blank=True, editable=False)

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'robots',
     'ckeditor',
     'ckeditor_uploader',
+    'imagekit',
 
     'posts',
     'work',

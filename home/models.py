@@ -1,9 +1,16 @@
+import os
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
+from imagekit.models import ProcessedImageField
+from chato.utilities import content_name
 
 
 class Section(models.Model):
-    thumbnail = models.ImageField(upload_to='sections', blank=True)
+    thumbnail = ProcessedImageField(
+        upload_to=content_name(os.path.join('landing', 'sections')),
+        options={'quality': 60},
+        blank=True,
+    )
     title = models.CharField(max_length=240, blank=True)
     order = models.IntegerField()
     description = RichTextUploadingField()

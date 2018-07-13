@@ -4,6 +4,8 @@ from django.db import models
 from django.urls import reverse
 from slugify import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
+from imagekit.models import ProcessedImageField
+from chato.utilities import content_name
 
 
 class Article(models.Model):
@@ -13,7 +15,11 @@ class Article(models.Model):
     content = RichTextUploadingField()
     published_at = models.DateTimeField()
     public = models.BooleanField(default=True)
-    thumbnail = models.ImageField(upload_to='articles', blank=True)
+    thumbnail = ProcessedImageField(
+        upload_to=content_name('articles'),
+        options={'quality': 60},
+        blank=True,
+    )
 
     def __str__(self):
         return self.title
