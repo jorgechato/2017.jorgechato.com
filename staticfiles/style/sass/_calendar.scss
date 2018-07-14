@@ -1,3 +1,20 @@
-.calendar .border {
-  border-style: none;
+.calendar {
+	border: none !important;
+
+	.border {
+		border-style: none;
+	}
+	
+	.text-normal {
+		display: none;
+	}
+
+	.contrib-column {
+		border-left: none !important;
+		border-top: none !important;
+	}
+
+	.float-left.text-gray {
+		display: none;
+	}
 }
