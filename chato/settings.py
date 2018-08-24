@@ -1,9 +1,6 @@
 import os
 import dj_database_url
 
-from github import Github
-from instagram.client import InstagramAPI
-
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -183,16 +180,6 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 COMPRESS_ROOT = STATIC_ROOT
-
-github_api = Github(os.environ.get('git_user'), os.environ.get('git_pass'))
-
-access_token = os.environ.get('access_token')
-client_secret = os.environ.get('client_secret')
-instagram_id = os.environ.get('instagram_id')
-instagram_api = InstagramAPI(
-    access_token=access_token,
-    client_secret=client_secret,
-)
 
 email = os.environ.get('email')
 

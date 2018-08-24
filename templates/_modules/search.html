@@ -1,12 +1,13 @@
-<div id="form-search" class="overlay">
-	<span class="closebtn" id="btn-search-close" title="Close Overlay">x</span>
-		<div class="overlay-content">
-			<form
-				action="{% url 'articles:search' %}"
-				method="get"
-				accept-charset="utf-8">
-				<input type="search" class="sb" name="q" autocomplete="off" placeholder="What would you like to search for?" />
-				<button type="submit" class="sbtn fas fa-search"></button>
-			</form>
-	</div>
-</div>
+<form
+		action="{% url 'articles:search' %}"
+		method="get"
+		accept-charset="utf-8"
+		class="search-inline">
+		<input type="search" class="form-control" name="q" placeholder="What would you like to search for?">
+		<button type="submit">
+				<i class="fa fa-search"></i>
+		</button>
+		<button type="reset" class="search-close">
+				<i class="fa fa-times"></i>
+		</button>
+</form>

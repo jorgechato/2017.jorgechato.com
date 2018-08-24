@@ -7,10 +7,10 @@ from django.conf.urls import include
 urlpatterns = [
     url(r'^articles/', include('posts.urls'), name="articles"),
     url(r'^events/', include('events.urls'), name="events"),
-    url(r'^work/', include('work.urls'), name="work"),
     url(r'^admin/', admin.site.urls),
     url(r'^editor/', include('ckeditor_uploader.urls')),
-    url(r'^', include('home.urls'), name="home"),
+    url(r'^', include('work.urls'), name="work"),
+    #  url(r'^', include('home.urls'), name="home"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

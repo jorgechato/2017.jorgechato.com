@@ -1,10 +1,12 @@
+import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from ckeditor.fields import RichTextField
-import chato.settings as ls
 from imagekit.models import ProcessedImageField
-from chato.utilities import content_name
+from github import Github
+import chato.settings as ls
+from chato.utilities import UploadPath
 
 
 class Profile(models.Model):
@@ -14,10 +16,11 @@ class Profile(models.Model):
     bio = RichTextField(blank=True, null=True)
     avatar = models.URLField()
     avatar = ProcessedImageField(
-        upload_to=content_name('profile'),
+        upload_to=UploadPath('profile'),
         options={'quality': 60}
     )
     cv = models.URLField(blank=True, null=True)
+    amazon = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -53,7 +56,7 @@ class Technical(models.Model):
 
 class Experience(models.Model):
     thumbnail = ProcessedImageField(
-        upload_to=content_name('experience'),
+        upload_to=UploadPath('experience'),
         options={'quality': 60}
     )
     company_name = models.CharField(max_length=240)
@@ -76,7 +79,7 @@ class Experience(models.Model):
 
 class Project(models.Model):
     thumbnail = ProcessedImageField(
-        upload_to=content_name('projects'),
+        upload_to=UploadPath('projects'),
         options={'quality': 60}
     )
     owner_name = models.CharField(max_length=240)
@@ -93,9 +96,18 @@ class Project(models.Model):
         return self.repo_name
 
     def save(self, *arg, **kwargs):
+        github_api = Github(
+            os.environ.get('git_user'),
+            os.environ.get('git_pass'),
+        )
+
         self.slug = "{}-{}".format(self.owner_name, self.repo_name)
-        repo = ls.github_api.get_repo(
-            "{}/{}".format(self.owner_name, self.repo_name))
+        repo = github_api.get_repo(
+            "{}/{}".format(
+                self.owner_name,
+                self.repo_name,
+            )
+        )
         self.description = repo.description
         self.url = repo.html_url
         self.updated_at = repo.updated_at
@@ -105,7 +117,8 @@ class Project(models.Model):
         return "{}/{}".format(self.owner_name, self.repo_name)
 
     def get_absolute_url(self):
-        return reverse('profile:repo', kwargs={'slug': self.slug})
+        return self.url
+        #  return reverse('work:repo', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ('-updated_at',)

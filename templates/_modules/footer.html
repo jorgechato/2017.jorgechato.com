@@ -22,11 +22,13 @@
 				<i class="fab fa-keybase" aria-hidden="true"></i>
 			</a>
 		</li>
-		<li role="presentation">
-			<a href="//keybase.io/jorgechato">
+		{% if profile and profile.amazon %}
+		<li role="presentation" class="hidden-xs">
+			<a href="{{ profile.amazon }}">
 				<i class="fab fa-amazon" aria-hidden="true"></i>
 			</a>
 		</li>
+		{% endif %}
 	</ul>
 
 	<div class="joker">

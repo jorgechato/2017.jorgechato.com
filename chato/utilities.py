@@ -1,26 +1,29 @@
 import os
 from slugify import slugify
 from chato.settings import MEDIA_ROOT
+from django.utils.deconstruct import deconstructible
 
 
-def content_name(path):
+@deconstructible
+class UploadPath:
 
-    def wrapper(instance, filename):
+    def __init__(self, sub_path):
+        self.path = sub_path
+
+    def __call__(self, instance, filename):
         ext = filename.split('.')[-1]
 
-        if instance.slug:
+        if hasattr(instance, 'slug'):
             filename = '{}.{}'.format(instance.slug, ext)
-        elif instance.title:
+        elif hasattr(instance, 'title'):
             filename = '{}.{}'.format(instance.title, ext)
-        elif instance.company_name:
+        elif hasattr(instance, 'company_name'):
             filename = '{}.{}'.format(slugify(instance.company_name), ext)
-        elif instance.email:
-            filename = '{}.{}'.format(slugify(instance.email), ext)
         else:
             filename = '{}.{}'.format(instance.pk, ext)
 
         image = os.path.join(
-            path,
+            self.path,
             filename,
         )
 
@@ -29,5 +32,3 @@ def content_name(path):
             os.remove(file_path)
 
         return image
-
-    return wrapper

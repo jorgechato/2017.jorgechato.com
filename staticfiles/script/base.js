@@ -1,13 +1,16 @@
 document.onreadystatechange = () => {
-	var searchBtnOpen = document.getElementById('btn-search-open')
-	var searchForm = document.getElementById('form-search')
-	var searchBtnClose = document.getElementById('btn-search-close')
+	let sp = document.querySelector('.search-open');
+	let searchbar = document.querySelector('.search-inline');
+	let shclose = document.querySelector('.search-close');
 
-	searchBtnOpen.onclick = () => {
-		searchForm.style.display = "block";
+	function changeClass() {
+		searchbar.classList.add('search-visible');
 	}
 
-	searchBtnClose.onclick = () => {
-		searchForm.style.display = "none";
+	function closesearch() {
+		searchbar.classList.remove('search-visible');
 	}
+
+	sp.addEventListener('click', changeClass);
+	shclose.addEventListener('click', closesearch);
 }

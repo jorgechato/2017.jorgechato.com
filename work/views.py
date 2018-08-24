@@ -1,7 +1,7 @@
 import base64
 import os
 from django.views.generic import TemplateView, DetailView
-from chato.settings import github_api
+from github import Github
 import markdown2
 from chato.settings import MEDIA_ROOT
 
@@ -11,13 +11,20 @@ from work.models import Experience, Project, Technical
 class RepoDetailView(DetailView):
     model = Project
 
+    def __init__(self, *args, **kwargs):
+        super(RepoDetailView, self).__init__()
+        self.github_api = Github(
+            os.environ.get('git_user'),
+            os.environ.get('git_pass'),
+        )
+
     def get_context_data(self, *args, **kwargs):
         context = super(RepoDetailView, self).get_context_data(*args, **kwargs)
         repo_full_name = "{}/{}".format(
             self.object.owner_name,
             self.object.repo_name)
 
-        repo = github_api.get_repo(repo_full_name)
+        repo = self.github_api.get_repo(repo_full_name)
         encod_readme = repo.get_readme().content
 
         readme = base64.b64decode(encod_readme)

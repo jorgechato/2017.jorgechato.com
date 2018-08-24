@@ -16,11 +16,20 @@
 </div>
 {% endfor %}
 
+{% if amazon %}
+<div>
+	{% for object in amazon %}
+		{{ object }}
+	{% endfor %}
+</div>
+{% endif %}
+
+{% if pictures %}
 <div class="instagram">
-	<h2>A look into my life</h2>
 	{% for object in pictures %}
 	{{ object.url }}
 	<img src="{{ object.images.standard_resolution.url }}" alt="">
 	{% endfor %}
 </div>
+{% endif %}
 {% endblock %}

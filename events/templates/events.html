@@ -16,6 +16,8 @@
 	</div>
 {% endfor %}
 
+{% if events %}
 {% include "_modules/list.html" with objects=events title="Events" %}
+{% endif %}
 
 {% endblock %}

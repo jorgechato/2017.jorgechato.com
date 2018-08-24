@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% include "_modules/search.html" %}
 
 {% if profile %}
 {% if profile.cv %}
@@ -6,7 +7,7 @@
 {% endif %}
 
 <header class="center">
-	<a href="{% url 'home:main' %}">
+	<a href="{% url 'work:main' %}">
 		<img class="circle logo" src="{{ profile.avatar.url }}" alt="{{ profile.get_full_name }}">
 	</a>
 	<div class="mb0 h1 name">{{ profile.get_full_name }}</div>

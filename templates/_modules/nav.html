@@ -6,11 +6,6 @@
 
 	<ul class="nav nav-pills">
 		<li role="presentation">
-			<a href="{% url 'home:main' %}">
-				Home
-			</a>
-		</li>
-		<li role="presentation">
 			<a href="{% url 'work:main' %}">
 				Work
 			</a>
@@ -25,13 +20,15 @@
 				Articles
 			</a>
 		</li>
+		{% if profile and profile.amazon %}
 		<li role="presentation" class="hidden-xs">
-			<a href="//www.amazon.com/shop/jorgechato">
+			<a href="{{ profile.amazon }}">
 				<i class="fab fa-amazon" aria-hidden="true"></i>
 			</a>
 		</li>
+		{% endif %}
 		<li role="presentation">
-			<a id="btn-search-open" href="#">
+			<a href="javascript:void(0)" class="search-open" id="btn-search-open">
 				<i class="fas fa-search"></i>
 			</a>
 		</li>
@@ -41,5 +38,4 @@
 		<div class="ruler col-xs-8 col-xs-offset-2"></div>
 		<div class="ruler col-xs-6 col-xs-offset-3"></div>
 	</div>
-	{% include "_modules/search.html" %}
 </nav>
