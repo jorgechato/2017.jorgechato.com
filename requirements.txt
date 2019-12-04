@@ -4,7 +4,7 @@ awesome-slugify==1.6.5
 diff-match-patch==20121119
 dj-database-url==0.5.0
 dj-static==0.0.6
-Django==2.0.6
+Django==2.0.12
 django-appconf==1.0.2
 django-autofixture==0.12.1
 django-ckeditor==5.5.0
